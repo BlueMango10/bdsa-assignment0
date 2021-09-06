@@ -70,5 +70,69 @@ namespace Exercise.Test
             // Assert
             Assert.Equal("nay", output);
         }
+
+        [Fact]
+        public void Before1582()
+        {
+            // Arrange
+            var writer = new StringWriter();
+            Console.SetOut(writer);
+
+            // Act
+            Console.SetIn(new StringReader("24"));
+            Program.Main(new string[0]);
+            var output = writer.GetStringBuilder().ToString().Trim();
+
+            // Assert
+            Assert.EndsWith("Year must be after 1582!", output);
+        }
+
+        [Fact]
+        public void ParseErrorNotNumber()
+        {
+            // Arrange
+            var writer = new StringWriter();
+            Console.SetOut(writer);
+
+            // Act
+            Console.SetIn(new StringReader("FooBar"));
+            Program.Main(new string[0]);
+            var output = writer.GetStringBuilder().ToString().Trim();
+
+            // Assert
+            Assert.EndsWith("Parse error", output);
+        }
+
+        [Fact]
+        public void ParseErrorNotInt()
+        {
+            // Arrange
+            var writer = new StringWriter();
+            Console.SetOut(writer);
+
+            // Act
+            Console.SetIn(new StringReader("2012.4"));
+            Program.Main(new string[0]);
+            var output = writer.GetStringBuilder().ToString().Trim();
+
+            // Assert
+            Assert.EndsWith("Parse error", output);
+        }
+
+        [Fact]
+        public void ParseErrorNumberTooLong()
+        {
+            // Arrange
+            var writer = new StringWriter();
+            Console.SetOut(writer);
+
+            // Act
+            Console.SetIn(new StringReader(int.MaxValue.ToString() + "0"));
+            Program.Main(new string[0]);
+            var output = writer.GetStringBuilder().ToString().Trim();
+
+            // Assert
+            Assert.EndsWith("Parse error", output);
+        }
     }
 }

@@ -4,11 +4,26 @@ namespace Exercise
 {
     public class Program
     {
-        public static void Main(string[] args)
+		private const int StartYear = 1582;
+
+		public static void Main(string[] args)
         {
             Console.Write("Write a year and hit [Enter] >");
-            int.TryParse(Console.ReadLine(), out int input);
-            Console.WriteLine(IsLeapYear(input)? "yay" : "nay");
+            if (int.TryParse(Console.ReadLine(), out int input))
+			{
+				if (input > StartYear)
+				{
+					Console.WriteLine(IsLeapYear(input) ? "yay" : "nay");
+				}
+				else
+				{
+					Console.WriteLine("Year must be after 1582!");
+				}
+			}
+			else
+            {
+                Console.WriteLine("Parse error");
+            }
         }
 
         ///<summary>
