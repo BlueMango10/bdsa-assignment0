@@ -1,9 +1,10 @@
 using System;
+using System.IO;
 using Xunit;
 
 namespace Exercise.Test
 {
-    public class UnitTest
+    public class IsLeapYearTest
     {
         /*
         Rules:
@@ -34,6 +35,40 @@ namespace Exercise.Test
         public void DivisibleBy400()
         {
             Assert.True(Program.IsLeapYear(1600));
+        }
+    }
+
+    public class MainTest {
+        [Fact]
+        public void Yay()
+        {
+            // Arrange
+            var writer = new StringWriter();
+            Console.SetOut(writer);
+
+            // Act
+            Console.SetIn(new StringReader("2020"));
+            Program.Main(new string[0]);
+            var output = writer.GetStringBuilder().ToString().Trim()[^3..];
+
+            // Assert
+            Assert.Equal("yay", output);
+        }
+
+        [Fact]
+        public void Nay()
+        {
+            // Arrange
+            var writer = new StringWriter();
+            Console.SetOut(writer);
+
+            // Act
+            Console.SetIn(new StringReader("2021"));
+            Program.Main(new string[0]);
+            var output = writer.GetStringBuilder().ToString().Trim()[^3..];
+
+            // Assert
+            Assert.Equal("nay", output);
         }
     }
 }

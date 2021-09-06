@@ -4,9 +4,11 @@ namespace Exercise
 {
     public class Program
     {
-        static void Main(string[] args)
+        public static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            Console.Write("Write a year and hit [Enter] >");
+            int.TryParse(Console.ReadLine(), out int input);
+            Console.WriteLine(IsLeapYear(input)? "yay" : "nay");
         }
 
         ///<summary>
