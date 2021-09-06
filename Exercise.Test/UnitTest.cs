@@ -49,7 +49,7 @@ namespace Exercise.Test
             // Act
             Console.SetIn(new StringReader("2020"));
             Program.Main(new string[0]);
-            var output = writer.GetStringBuilder().ToString().Trim();
+            var output = writer.GetStringBuilder().ToString().Trim()[^3..];
 
             // Assert
             Assert.Equal("yay", output);
@@ -65,7 +65,7 @@ namespace Exercise.Test
             // Act
             Console.SetIn(new StringReader("2021"));
             Program.Main(new string[0]);
-            var output = writer.GetStringBuilder().ToString().Trim();
+            var output = writer.GetStringBuilder().ToString().Trim()[^3..];
 
             // Assert
             Assert.Equal("nay", output);
